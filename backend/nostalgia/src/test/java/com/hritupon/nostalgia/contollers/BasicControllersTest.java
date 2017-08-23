@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 public class BasicControllersTest {
-    public static final String WELCOME_MESSAGE = "Welcome message";
+    public static final String MESSAGE = "message";
     private MockMvc mockMvc;
     @Mock
     NostalgiaProperties nostalgiaProperties;
@@ -34,12 +34,12 @@ public class BasicControllersTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mockMvc = standaloneSetup(basicControllers).build();
-        Mockito.when(nostalgiaProperties.getMessage()).thenReturn(WELCOME_MESSAGE);
+        Mockito.when(nostalgiaProperties.getMessage()).thenReturn(MESSAGE);
     }
 
     @Test
     public void home() throws Exception {
-        this.mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(content().string(WELCOME_MESSAGE));
+        this.mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(content().string(MESSAGE));
     }
 
 }
